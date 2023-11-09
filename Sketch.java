@@ -1,15 +1,20 @@
 /* Instructions:
  * > Create a method with parameters to draw a composite object (consisting of various shapes) at various locations specified by the parameters 
  * > Create another method with parameters to draw a composite object at various locations specified by the method parameters. 
- * Include additional parameters to modify the object(s) drawn in this method. i.e colour, size, etc.
+ * > Include additional parameters to modify the object(s) drawn in this method. i.e colour, size, etc.
  * Demonstration of method with parameters and a return value. i.e methods such that given dimensions of an object, returns the x value 
  * or y value for the object, to be drawn in the middle of the screen. 
  */
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
+
+  int xyz = 0;
+  int intColourSequence = 0;
 		
   // Called once at the beginning of execution, put your size all in this method
   public void settings() {
@@ -30,7 +35,10 @@ public class Sketch extends PApplet {
     frameRate(3);
     flower(375, 375, 25, 25);
     bee(100, 100);
-    noLoop();
+    xyz++;
+    if(xyz == 30) {
+      noLoop();
+    }
   }
 
   public void bee(int intBeeX, int intBeeY){
@@ -48,10 +56,10 @@ public class Sketch extends PApplet {
   }
 
   public int flower(int intUpperX, int intUpperY, int intLowerX, int intLowerY){
-    int intColourSequence = 0;
+    // int intColourSequence = ThreadLocalRandom.current().nextInt(0, 4);// 0;
     int i = 0;
 
-    for (i = 0; i < 100; i ++){
+    for (i = 0; i < 1; i ++){
       Random ranFlowerX = new Random();
       Random ranFlowerY = new Random();
       int intFlowerX = ranFlowerX.nextInt(((intUpperX - intLowerX) + 1) + intLowerX);
