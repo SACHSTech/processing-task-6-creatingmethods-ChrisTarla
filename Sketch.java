@@ -27,11 +27,10 @@ public class Sketch extends PApplet {
 
   // Called repeatedly, anything drawn to the screen goes here
   public void draw() {
+    frameRate(3);
     flower(375, 375, 25, 25);
     bee(100, 100);
-    //while (i < 100){
-      //noLoop();
-    //}
+    noLoop();
   }
 
   public void bee(int intBeeX, int intBeeY){
@@ -51,15 +50,16 @@ public class Sketch extends PApplet {
   public int flower(int intUpperX, int intUpperY, int intLowerX, int intLowerY){
     int intColourSequence = 0;
     int i = 0;
-    Random ranFlowerX = new Random();
-    Random ranFlowerY = new Random();
-    int intFlowerX = ranFlowerX.nextInt(((intUpperX - intLowerX) + 1) + intLowerX);
-    int intFlowerY = ranFlowerY.nextInt(((intUpperY - intLowerY) + 1) + intLowerY);
-    
-    fill(50, 170, 80);
-    rect(intFlowerX - 6, intFlowerY, 12, 50);
 
-    for (i = 0; i < 1; i ++){
+    for (i = 0; i < 100; i ++){
+      Random ranFlowerX = new Random();
+      Random ranFlowerY = new Random();
+      int intFlowerX = ranFlowerX.nextInt(((intUpperX - intLowerX) + 1) + intLowerX);
+      int intFlowerY = ranFlowerY.nextInt(((intUpperY - intLowerY) + 1) + intLowerY);
+      
+      fill(50, 170, 80);
+      rect(intFlowerX - 6, intFlowerY, 12, 50);
+    
       if (intColourSequence == 0){
         fill(60, 160, 200);
         intColourSequence ++;
