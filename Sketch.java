@@ -1,19 +1,8 @@
-/* Instructions:
- * > Create a method with parameters to draw a composite object (consisting of various shapes) at various locations specified by the parameters 
- * > Create another method with parameters to draw a composite object at various locations specified by the method parameters. 
- * > Include additional parameters to modify the object(s) drawn in this method. i.e colour, size, etc.
- * Demonstration of method with parameters and a return value. i.e methods such that given dimensions of an object, returns the x value 
- * or y value for the object, to be drawn in the middle of the screen. 
- */
-
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-
 import processing.core.PApplet;
 
 public class Sketch extends PApplet {
-
-  int xyz = 0;
+  int intEnd = 0;
   int intColourSequence = 0;
 		
   // Called once at the beginning of execution, put your size all in this method
@@ -30,17 +19,26 @@ public class Sketch extends PApplet {
     background(210, 255, 173);
   }
 
-  // Called repeatedly, anything drawn to the screen goes here
+  /**
+   * A method that calls the flower and bee methods 50 times, at a frame rate of 3 frames per second 
+   */
+  // Called repeatedly, anything drawn to the screen goes here 
   public void draw() {
     frameRate(3);
     flower(375, 375, 25, 25);
     bee(100, 100);
-    xyz++;
-    if(xyz == 30) {
+    intEnd++;
+    if(intEnd == 50) {
       noLoop();
     }
   }
 
+  /**
+   * A method that prints a bee to the screen 
+   * 
+   * @param intBeeX  The x-coordinate of the center of the bee 
+   * @param intBeeY  The y-coordinate of the center of the bee 
+   */
   public void bee(int intBeeX, int intBeeY){
     fill(185, 210, 215);
     ellipse(intBeeX, intBeeY - 20, 15, 20);
@@ -51,12 +49,18 @@ public class Sketch extends PApplet {
     rect(intBeeX - 2, intBeeY - 12, 5, 25);
     rect(intBeeX + 10, intBeeY - 10, 5, 20);
     line(intBeeX + 15, intBeeY - 10, intBeeX + 25, intBeeY - 20);
-    
-
   }
 
+  /**
+   * A method that prints a flower the the screen, looping between 4 colours 
+   * 
+   * @param intUpperX  The upper range of the random generation for the x-coordinate of the center of the flower 
+   * @param intUpperY  The upper range of the random generation for the y-coordinate of the center of the flower
+   * @param intLowerX  The lower range of the random generation for the x-coordinate of the center of the flower
+   * @param intLowerY  The lower range of the random generation for the y-coordinate of the center of the flower
+   * @return the value of the colour sequence, which determines the colour of the flower petals based on when they are printed 
+   */
   public int flower(int intUpperX, int intUpperY, int intLowerX, int intLowerY){
-    // int intColourSequence = ThreadLocalRandom.current().nextInt(0, 4);// 0;
     int i = 0;
 
     for (i = 0; i < 1; i ++){
@@ -89,7 +93,9 @@ public class Sketch extends PApplet {
       fill(252, 211, 0);
       ellipse(intFlowerX, intFlowerY, 25, 25);
       
+      fill(0);
+      text(intColourSequence, intFlowerX - 5, intFlowerY + 5);
     }
-    return i;
+    return intColourSequence;
   }
 }
